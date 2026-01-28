@@ -3,78 +3,82 @@
     var stats = (dynamic)ViewData.Model;
 }
 
-<div class="container-fluid py-5">
-    <!-- Header Section -->
-    <div class="row mb-5">
-        <div class="col-md-8">
-            <h1 class="fw-bold" style="color: #1e40af;">
-                <i class="fas fa-chart-line me-2"></i>Admin Dashboard
-            </h1>
-            <p class="text-muted">Manage questions, answers, and system settings</p>
-        </div>
-        <div class="col-md-4 text-end">
-            <div class="dropdown">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                    <i class="fas fa-user-circle me-2"></i>Admin Menu
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" asp-action="ChangePassword"><i class="fas fa-key me-2"></i>Change Password</a></li>
-                    <li><a class="dropdown-item" asp-action="ManageUsers"><i class="fas fa-users me-2"></i>Manage Users</a></li>
-                    <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item text-danger" asp-action="Logout"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
-                </ul>
+<div class="islamic-header">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1 class="display-5 fw-bold mb-2" style="text-transform: uppercase; letter-spacing: 1px;">
+                    <i class="fas fa-chart-line me-3"></i>Admin Dashboard
+                </h1>
+                <p style="font-weight: 300; letter-spacing: 0.5px; opacity: 0.9;">
+                    Manage Fatwa questions, answers, and system settings with ease
+                </p>
+            </div>
+            <div class="col-md-4 text-end">
+                <div class="dropdown">
+                    <button class="btn btn-light fw-bold dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            style="color: var(--primary-color); border: 2px solid var(--accent-color);">
+                        <i class="fas fa-user-circle me-2"></i>Admin Menu
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" asp-action="ChangePassword"><i class="fas fa-key me-2"></i>Change Password</a></li>
+                        <li><a class="dropdown-item" asp-action="ManageUsers"><i class="fas fa-users me-2"></i>Manage Users</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item text-danger fw-bold" asp-action="Logout"><i class="fas fa-sign-out-alt me-2"></i>Logout</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-
+</div><div class="container-fluid py-5">
     <!-- Statistics Cards -->
     <div class="row g-4 mb-5">
         <!-- Total Questions -->
         <div class="col-md-6 col-lg-3">
-            <div class="card border-0 shadow-soft overflow-hidden">
-                <div style="height: 4px; background: linear-gradient(90deg, #1e40af 0%, #0ea5e9 100%);"></div>
+            <div class="card border-0 overflow-hidden" style="box-shadow: 0 8px 25px rgba(26, 58, 82, 0.12); border: 2px solid var(--accent-color); border-radius: 12px;">
+                <div style="height: 6px; background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);"></div>
                 <div class="card-body text-center p-4">
                     <div class="mb-3">
                         <div class="rounded-circle mx-auto d-flex align-items-center justify-content-center" 
-                             style="width: 60px; height: 60px; background: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);">
-                            <i class="fas fa-question-circle fs-3" style="color: #1e40af;"></i>
+                             style="width: 70px; height: 70px; background: linear-gradient(135deg, rgba(26, 58, 82, 0.1) 0%, rgba(45, 90, 123, 0.1) 100%); border: 2px solid var(--accent-color);">
+                            <i class="fas fa-question-circle fs-2" style="color: var(--primary-color);"></i>
                         </div>
                     </div>
-                    <h6 class="text-muted mb-2">Total Questions</h6>
-                    <h2 class="fw-bold" style="color: #1e40af;">@stats.TotalQuestions</h2>
+                    <h6 class="text-muted mb-2" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Total Questions</h6>
+                    <h2 class="fw-bold" style="color: var(--primary-color);">@stats.TotalQuestions</h2>
                 </div>
             </div>
         </div>
 
         <!-- Pending Questions -->
         <div class="col-md-6 col-lg-3">
-            <div class="card border-0 shadow-soft overflow-hidden">
-                <div style="height: 4px; background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);"></div>
+            <div class="card border-0 overflow-hidden" style="box-shadow: 0 8px 25px rgba(212, 175, 55, 0.12); border: 2px solid var(--accent-color); border-radius: 12px;">
+                <div style="height: 6px; background: linear-gradient(90deg, var(--accent-color) 0%, #e6c200 100%);"></div>
                 <div class="card-body text-center p-4">
                     <div class="mb-3">
                         <div class="rounded-circle mx-auto d-flex align-items-center justify-content-center" 
-                             style="width: 60px; height: 60px; background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.1) 100%);">
-                            <i class="fas fa-hourglass-half fs-3" style="color: #f59e0b;"></i>
+                             style="width: 70px; height: 70px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(230, 194, 0, 0.1) 100%); border: 2px solid var(--accent-color);">
+                            <i class="fas fa-hourglass-half fs-2" style="color: var(--accent-color);"></i>
                         </div>
                     </div>
-                    <h6 class="text-muted mb-2">Pending Review</h6>
-                    <h2 class="fw-bold" style="color: #f59e0b;">@stats.PendingQuestions</h2>
+                    <h6 class="text-muted mb-2" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Pending Review</h6>
+                    <h2 class="fw-bold" style="color: var(--accent-color);">@stats.PendingQuestions</h2>
                 </div>
             </div>
         </div>
 
         <!-- Answered Questions -->
         <div class="col-md-6 col-lg-3">
-            <div class="card border-0 shadow-soft overflow-hidden">
-                <div style="height: 4px; background: linear-gradient(90deg, #10b981 0%, #059669 100%);"></div>
+            <div class="card border-0 overflow-hidden" style="box-shadow: 0 8px 25px rgba(5, 150, 105, 0.12); border: 2px solid #059669; border-radius: 12px;">
+                <div style="height: 6px; background: linear-gradient(90deg, #10b981 0%, #059669 100%);"></div>
                 <div class="card-body text-center p-4">
                     <div class="mb-3">
                         <div class="rounded-circle mx-auto d-flex align-items-center justify-content-center" 
-                             style="width: 60px; height: 60px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);">
-                            <i class="fas fa-check-circle fs-3" style="color: #10b981;"></i>
+                             style="width: 70px; height: 70px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%); border: 2px solid #059669;">
+                            <i class="fas fa-check-circle fs-2" style="color: #10b981;"></i>
                         </div>
                     </div>
-                    <h6 class="text-muted mb-2">Answered</h6>
+                    <h6 class="text-muted mb-2" style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Answered</h6>
                     <h2 class="fw-bold" style="color: #10b981;">@stats.AnsweredQuestions</h2>
                 </div>
             </div>
@@ -82,8 +86,8 @@
 
         <!-- Published Questions -->
         <div class="col-md-6 col-lg-3">
-            <div class="card border-0 shadow-soft overflow-hidden">
-                <div style="height: 4px; background: linear-gradient(90deg, #06b6d4 0%, #0891b2 100%);"></div>
+            <div class="card border-0 overflow-hidden" style="box-shadow: 0 8px 25px rgba(6, 182, 212, 0.12); border: 2px solid #06b6d4; border-radius: 12px;">
+                <div style="height: 6px; background: linear-gradient(90deg, #06b6d4 0%, #0891b2 100%);"></div>
                 <div class="card-body text-center p-4">
                     <div class="mb-3">
                         <div class="rounded-circle mx-auto d-flex align-items-center justify-content-center" 

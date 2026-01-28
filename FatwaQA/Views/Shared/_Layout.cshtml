@@ -1,9 +1,8 @@
-﻿@using Microsoft.AspNetCore.Localization
-@inject IStringLocalizer<SharedResource> Localizer
+﻿@inject IStringLocalizer<SharedResource> Localizer
 
 @{
-    var currentCulture = CultureInfo.CurrentCulture.Name;
-    var isArabic = currentCulture.StartsWith("ar");
+    var currentCulture = System.Globalization.CultureInfo.CurrentCulture.Name;
+    var isArabic = currentCulture.StartsWith("ar", System.StringComparison.OrdinalIgnoreCase);
 }
 
 <!DOCTYPE html>
@@ -49,13 +48,13 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
                                 <li>
-                                    <a class="dropdown-item @(currentCulture == "en" ? "active" : "")" 
+                                    <a class="dropdown-item @(!isArabic ? "active" : "")" 
                                        href="@Url.Action("SetLanguage", "Home", new { culture = "en", returnUrl = ViewContext.HttpContext.Request.Path })">
                                         <i class="fas fa-check me-2"></i>@Localizer["English"]
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item @(currentCulture == "ar" ? "active" : "")" 
+                                    <a class="dropdown-item @(isArabic ? "active" : "")" 
                                        href="@Url.Action("SetLanguage", "Home", new { culture = "ar", returnUrl = ViewContext.HttpContext.Request.Path })">
                                         <i class="fas fa-check me-2"></i>@Localizer["Arabic"]
                                     </a>

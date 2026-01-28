@@ -3,28 +3,31 @@
 }
 
 <div class="min-vh-100 d-flex align-items-center justify-content-center py-4" 
-     style="background: linear-gradient(135deg, #1e40af 0%, #0ea5e9 100%);">
+     style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-5 col-lg-4">
                 <div class="text-center mb-5 text-white">
                     <div class="mb-3">
-                        <i class="fas fa-lock fs-1"></i>
+                        <i class="fas fa-key fs-1" style="color: var(--accent-color);"></i>
                     </div>
-                    <h2 class="fw-bold">Admin Panel</h2>
-                    <p class="text-white-50">Secure access for administrators</p>
+                    <h2 class="fw-bold" style="text-transform: uppercase; letter-spacing: 1px;">
+                        <i class="fas fa-shield-alt me-2"></i>Admin Panel
+                    </h2>
+                    <p class="text-white-50" style="font-weight: 300; letter-spacing: 0.5px;">
+                        Secure access for authorized administrators
+                    </p>
                 </div>
 
-                <div class="card border-0 shadow-large rounded-3 overflow-hidden">
+                <div class="card border-0 overflow-hidden" style="box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3); border: 2px solid var(--accent-color); border-radius: 16px;">
                     <div class="card-body p-5">
                         <!-- Error Messages -->
                         @if (!ViewData.ModelState.IsValid)
                         {
-                            <div class="alert alert-danger border-0 mb-4" role="alert" 
-                                 style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.1) 100%); border-left: 5px solid #ef4444;">
-                                <p class="mb-0 fw-bold">
+                            <div class="islamic-panel" style="border-left-color: #dc2626; margin-bottom: 2rem;">
+                                <h6 style="color: #dc2626; margin-bottom: 1rem;">
                                     <i class="fas fa-exclamation-triangle me-2"></i>Login Failed
-                                </p>
+                                </h6>
                                 <small class="text-danger">
                                     @Html.ValidationSummary()
                                 </small>
@@ -34,48 +37,48 @@
                         <form asp-action="Login" method="post" novalidate>
                             <!-- Username Field -->
                             <div class="mb-4">
-                                <label for="username" class="form-label fw-bold">
-                                    <i class="fas fa-user me-2" style="color: #1e40af;"></i>Username
+                                <label for="username" class="form-label">
+                                    <i class="fas fa-user me-2"></i>Username
                                 </label>
                                 <input type="text" id="username" name="username" class="form-control form-control-lg" 
-                                       placeholder="Enter your username" required autofocus 
-                                       style="border: 2px solid #e2e8f0; border-radius: 8px; padding: 0.75rem;" />
+                                       placeholder="Enter your username" required autofocus />
                             </div>
 
                             <!-- Password Field -->
                             <div class="mb-4">
-                                <label for="password" class="form-label fw-bold">
-                                    <i class="fas fa-key me-2" style="color: #1e40af;"></i>Password
+                                <label for="password" class="form-label">
+                                    <i class="fas fa-key me-2"></i>Password
                                 </label>
                                 <input type="password" id="password" name="password" class="form-control form-control-lg" 
-                                       placeholder="Enter your password" required 
-                                       style="border: 2px solid #e2e8f0; border-radius: 8px; padding: 0.75rem;" />
+                                       placeholder="Enter your password" required />
                             </div>
 
                             <!-- Remember Me (optional) -->
                             <div class="mb-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="remember" name="remember">
-                                    <label class="form-check-label" for="remember">
-                                        Remember this device
+                                    <input class="form-check-input" type="checkbox" id="remember" name="remember" 
+                                           style="border-color: var(--accent-color);">
+                                    <label class="form-check-label" for="remember" style="color: var(--primary-color); font-weight: 600;">
+                                        <i class="fas fa-check-circle me-2"></i>Remember this device
                                     </label>
                                 </div>
                             </div>
 
                             <!-- Login Button -->
                             <div class="d-grid gap-2 mb-3">
-                                <button type="submit" class="btn btn-primary btn-lg fw-bold">
+                                <button type="submit" class="btn btn-primary btn-lg fw-bold" style="text-transform: uppercase; letter-spacing: 1px;">
                                     <i class="fas fa-sign-in-alt me-2"></i>Sign In
                                 </button>
                             </div>
                         </form>
 
                         <!-- Security Notice -->
-                        <div class="alert alert-info border-0 mb-0" role="alert" 
-                             style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%); border-left: 5px solid #0891b2;">
-                            <small class="d-flex align-items-center">
-                                <i class="fas fa-shield-alt me-2"></i>
-                                <span>This is a secure login area for authorized personnel only.</span>
+                        <div class="islamic-panel" style="border-left-color: #059669; margin-bottom: 0;">
+                            <h6 style="color: #059669; margin-bottom: 0.5rem;">
+                                <i class="fas fa-shield-alt me-2"></i>Security Notice
+                            </h6>
+                            <small style="font-size: 0.85rem;">
+                                This is a secure login area for authorized personnel only. Your credentials are encrypted and protected.
                             </small>
                         </div>
                     </div>
@@ -84,16 +87,10 @@
                 <!-- Footer -->
                 <div class="text-center mt-4 text-white-50">
                     <small>
-                        <i class="fas fa-lock-alt me-1"></i>Your credentials are encrypted and secure
+                        <i class="fas fa-lock-alt me-1"></i>Protected by Islamic standards of security
                     </small>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<style>
-    .shadow-large {
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    }
-</style>

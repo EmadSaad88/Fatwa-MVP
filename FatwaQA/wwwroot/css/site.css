@@ -1,13 +1,19 @@
-/* ==================== MODERN DESIGN VARIABLES ==================== */
+/* ==================== ISLAMIC THEME DESIGN VARIABLES ==================== */
 :root {
-  --primary-color: #1e40af;
-  --secondary-color: #0ea5e9;
-  --accent-color: #f59e0b;
-  --success-color: #10b981;
-  --danger-color: #ef4444;
-  --dark-bg: #0f172a;
-  --light-bg: #f8fafc;
-  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  /* Primary Islamic Colors - Deep Blue & Gold (Traditional Islamic Palette) */
+  --primary-color: #1a3a52;
+  --secondary-color: #2d5a7b;
+  --accent-color: #d4af37;
+  --gold-light: #f4e4c1;
+  --islamic-green: #2d5016;
+  --islamic-red: #8b3a3a;
+  
+  /* Supporting Colors */
+  --success-color: #059669;
+  --danger-color: #dc2626;
+  --dark-bg: #0a0f1f;
+  --light-bg: #f5f3f0;
+  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -86,9 +92,38 @@ html {
 body {
   margin-bottom: 60px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  color: #1f2937;
+  background: linear-gradient(135deg, #f5f3f0 0%, #ede7e1 100%);
+  background-attachment: fixed;
+  color: #2c3e50;
   line-height: 1.6;
+  position: relative;
+}
+
+/* Islamic geometric pattern overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(212, 175, 55, 0.02) 10px,
+      rgba(212, 175, 55, 0.02) 20px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 10px,
+      rgba(26, 58, 82, 0.02) 10px,
+      rgba(26, 58, 82, 0.02) 20px
+    );
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ==================== NAVBAR STYLES ==================== */
@@ -96,7 +131,29 @@ body {
   background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%) !important;
   box-shadow: var(--card-shadow);
   padding: 1rem 0 !important;
-  border-bottom: 3px solid var(--accent-color);
+  border-bottom: 4px solid var(--accent-color);
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  overflow: visible;
+}
+
+/* Islamic decorative pattern in navbar */
+.navbar::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 2px,
+    rgba(212, 175, 55, 0.1) 2px,
+    rgba(212, 175, 55, 0.1) 20px
+  );
+  pointer-events: none;
 }
 
 .navbar-brand {
@@ -158,10 +215,29 @@ body {
 
 .btn-primary {
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+  transition: left 0.5s ease;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #1e3a8a 0%, #0284c7 100%);
+  background: linear-gradient(135deg, #0f2538 0%, #1e3f54 100%);
+  box-shadow: 0 7px 25px rgba(26, 58, 82, 0.25), inset 0 0 0 2px var(--accent-color);
+}
+
+.btn-primary:hover::before {
+  left: 100%;
 }
 
 .btn-success {
@@ -201,6 +277,28 @@ body {
   font-weight: 700;
   border: none;
   padding: 1.25rem !important;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
+}
+
+.card-header::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 2px,
+    rgba(212, 175, 55, 0.2) 2px,
+    rgba(212, 175, 55, 0.2) 10px
+  );
+  pointer-events: none;
 }
 
 .card-body {
@@ -209,27 +307,64 @@ body {
 
 /* ==================== FORM STYLES ==================== */
 .form-control, .form-select, textarea {
-  border: 2px solid #e2e8f0;
+  border: 2px solid #d4af37;
   border-radius: 8px;
   padding: 0.75rem 1rem;
   font-size: 1rem;
   transition: var(--transition);
+  background: rgba(255, 255, 255, 0.95);
 }
 
 .form-control:focus, .form-select:focus, textarea:focus {
-  border-color: var(--secondary-color);
-  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+  border-color: var(--primary-color);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(26, 58, 82, 0.1), inset 0 0 0 1px rgba(212, 175, 55, 0.3);
 }
 
 .form-label {
-  font-weight: 600;
-  color: #1f2937;
+  font-weight: 700;
+  color: var(--primary-color);
   margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+}
+
+.form-label::before {
+  content: '✦ ';
+  color: var(--accent-color);
+  margin-right: 0.5rem;
 }
 
 textarea {
   resize: vertical;
-  font-family: 'Courier New', monospace;
+  font-family: 'Segoe UI', sans-serif;
+  color: #2c3e50;
+}
+
+/* Islamic-themed form containers */
+.form-container {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(244, 228, 193, 0.05) 100%);
+  border: 2px solid var(--accent-color);
+  border-radius: 12px;
+  padding: 2rem;
+  position: relative;
+}
+
+.form-container::before {
+  content: '❋';
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: var(--accent-color);
+  background: linear-gradient(135deg, #f5f3f0 0%, #ede7e1 100%);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ==================== BADGE STYLES ==================== */
@@ -296,10 +431,23 @@ textarea {
 
 /* ==================== FOOTER STYLES ==================== */
 footer {
-  background: linear-gradient(90deg, var(--dark-bg) 0%, #1e293b 100%);
-  color: white;
-  border-top: 3px solid var(--accent-color);
+  background: linear-gradient(90deg, var(--dark-bg) 0%, var(--primary-color) 100%);
+  color: #f5f3f0;
+  border-top: 4px solid var(--accent-color);
   margin-top: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+footer::before {
+  content: '✦ ✦ ✦';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  letter-spacing: 1rem;
 }
 
 footer a {
@@ -428,4 +576,176 @@ footer a:hover {
   .card {
     margin-bottom: 1rem;
   }
+}
+
+/* ==================== ISLAMIC FATWA THEME DECORATIONS ==================== */
+.islamic-header {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  padding: 3rem 0;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 4px solid var(--accent-color);
+  margin-bottom: 2rem;
+}
+
+.islamic-header::before {
+  content: '✦';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  font-size: 200px;
+  color: rgba(212, 175, 55, 0.05);
+}
+
+.islamic-header h1 {
+  position: relative;
+  z-index: 1;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Section dividers with Islamic geometric pattern */
+.section-divider {
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--accent-color),
+    var(--accent-color) 10px,
+    transparent 10px,
+    transparent 20px,
+    var(--primary-color) 20px,
+    var(--primary-color) 25px,
+    transparent 25px,
+    transparent 35px
+  );
+  margin: 2rem 0;
+  border-radius: 2px;
+}
+
+/* Islamic theme badge/label */
+.islamic-badge {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 2px solid var(--accent-color);
+  display: inline-block;
+  position: relative;
+}
+
+.islamic-badge::before {
+  content: '✦';
+  margin-right: 0.5rem;
+  color: var(--accent-color);
+}
+
+/* Islamic panel/box styling */
+.islamic-panel {
+  background: white;
+  border: 2px solid var(--accent-color);
+  border-left: 8px solid var(--primary-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(26, 58, 82, 0.1);
+}
+
+.islamic-panel h5,
+.islamic-panel h6 {
+  color: var(--primary-color);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.islamic-panel h5::before,
+.islamic-panel h6::before {
+  content: '❋';
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+}
+
+/* Control panel Islamic styling */
+.control-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(244, 228, 193, 0.1) 100%);
+  border: 2px solid var(--accent-color);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 25px rgba(26, 58, 82, 0.1);
+}
+
+.control-panel-title {
+  color: var(--primary-color);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid var(--accent-color);
+  font-size: 1.1rem;
+}
+
+.control-panel-title::before {
+  content: '✦ ';
+  color: var(--accent-color);
+  margin-right: 0.5rem;
+}
+
+/* Question and Answer boxes */
+.qa-box {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-left: 6px solid var(--primary-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  transition: var(--transition);
+}
+
+.qa-box:hover {
+  border-left-color: var(--accent-color);
+  box-shadow: 0 8px 25px rgba(26, 58, 82, 0.12);
+  transform: translateX(5px);
+}
+
+.qa-box-label {
+  display: inline-block;
+  background: var(--primary-color);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+/* Arabic RTL specific Islamic styling */
+html[dir="rtl"] .islamic-panel {
+  border-left: none;
+  border-right: 8px solid var(--primary-color);
+  padding-right: 1.5rem;
+  padding-left: 1rem;
+}
+
+html[dir="rtl"] .islamic-badge::before {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+html[dir="rtl"] .control-panel-title::before {
+  margin-right: 0;
+  margin-left: 0.5rem;
 }

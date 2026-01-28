@@ -1,5 +1,6 @@
 using FatwaQA.Data;
 using FatwaQA.Helpers;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
@@ -28,12 +29,24 @@ builder.Services.AddSession(options =>
 
 var app = builder.Build();
 
-// Configure localization
-var supportedCultures = new[] { "en", "ar" };
+// Configure localization with proper culture codes
+var supportedCultures = new[] { "en-US", "ar-SA" };
+var supportedCultureInfos = new[]
+{
+    new CultureInfo("en-US"),
+    new CultureInfo("ar-SA")
+};
+
 var localizationOptions = new RequestLocalizationOptions()
-    .SetDefaultCulture("en")
+    .SetDefaultCulture("en-US")
     .AddSupportedCultures(supportedCultures)
     .AddSupportedUICultures(supportedCultures);
+
+// Configure culture providers: Cookie first, then Query string, then Accept-Language header
+localizationOptions.RequestCultureProviders.Clear();
+localizationOptions.RequestCultureProviders.Add(new CookieRequestCultureProvider { CookieName = "CultureCookie" });
+localizationOptions.RequestCultureProviders.Add(new QueryStringRequestCultureProvider());
+localizationOptions.RequestCultureProviders.Add(new AcceptLanguageHeaderRequestCultureProvider());
 
 app.UseRequestLocalization(localizationOptions);
 

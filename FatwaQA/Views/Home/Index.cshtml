@@ -1,10 +1,12 @@
-﻿@using Microsoft.AspNetCore.Localization
+﻿@using FatwaQA.Resources.Views.Home
+@using IndexResource = FatwaQA.Resources.Views.Home.Index
 @inject IStringLocalizer<SharedResource> SharedLocalizer
-@inject IHtmlLocalizer<Views.Home.Index> Localizer
+@inject IHtmlLocalizer<IndexResource> Localizer
 
 @{
     ViewData["Title"] = Localizer["WelcomeToFatwaQA"];
-    var currentCulture = CultureInfo.CurrentCulture.Name;
+    var currentCulture = System.Globalization.CultureInfo.CurrentCulture.Name;
+    var isArabic = currentCulture.StartsWith("ar", System.StringComparison.OrdinalIgnoreCase);
 }
 
 <!-- Hero Section -->

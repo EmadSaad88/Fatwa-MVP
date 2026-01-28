@@ -90,4 +90,10 @@
   <data name="Published" xml:space="preserve">
     <value>Published</value>
   </data>
+  <data name="ContactInformation" xml:space="preserve">
+    <value>Contact Information</value>
+  </data>
+  <data name="BrowseAnswers" xml:space="preserve">
+    <value>Browse Answers</value>
+  </data>
 </root>

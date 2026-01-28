@@ -90,4 +90,10 @@
   <data name="Published" xml:space="preserve">
     <value>منشور</value>
   </data>
+  <data name="ContactInformation" xml:space="preserve">
+    <value>معلومات الاتصال</value>
+  </data>
+  <data name="BrowseAnswers" xml:space="preserve">
+    <value>استعرض الإجابات</value>
+  </data>
 </root>

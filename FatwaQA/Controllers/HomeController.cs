@@ -20,11 +20,29 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult SetLanguage(string culture, string returnUrl)
     {
-        Response.Cookies.Append(
-            CookieRequestCultureProvider.DefaultCookieName,
-            CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-            new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
-        );
+        // Map short culture codes to full culture codes
+        var fullCulture = culture switch
+        {
+            "en" => "en-US",
+            "ar" => "ar-SA",
+            _ => "en-US"
+        };
+
+        if (!string.IsNullOrEmpty(fullCulture))
+        {
+            Response.Cookies.Append(
+                "CultureCookie",
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(fullCulture)),
+                new CookieOptions 
+                { 
+                    Expires = DateTimeOffset.UtcNow.AddYears(1),
+                    IsEssential = true,
+                    HttpOnly = false,
+                    Path = "/",
+                    SameSite = SameSiteMode.Lax
+                }
+            );
+        }
 
         return LocalRedirect(returnUrl ?? "/");
     }
