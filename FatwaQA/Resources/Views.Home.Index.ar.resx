@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data" type="xsd:string" minOccurs="0" msdata:Locale="ar-SA" />
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <data name="WelcomeToFatwaQA" xml:space="preserve">
+    <value>مرحبا بك في نظام الفتوى والأسئلة</value>
+  </data>
+  <data name="AskIslamicQuestions" xml:space="preserve">
+    <value>اسأل أسئلة إسلامية واحصل على إرشادات من العلماء المتخصصين. أسئلتك مهمة، ونحن هنا لمساعدتك.</value>
+  </data>
+  <data name="AskQuestion" xml:space="preserve">
+    <value>اسأل سؤال</value>
+  </data>
+  <data name="BrowseAnswers" xml:space="preserve">
+    <value>استعرض الإجابات</value>
+  </data>
+  <data name="EasyToUse" xml:space="preserve">
+    <value>سهل الاستخدام</value>
+  </data>
+  <data name="SimpleAndStraightforward" xml:space="preserve">
+    <value>عملية إرسال الأسئلة بسيطة وسهلة تستغرق أقل من دقيقة.</value>
+  </data>
+  <data name="ExpertAnswers" xml:space="preserve">
+    <value>إجابات الخبراء</value>
+  </data>
+  <data name="AnswersFromScholars" xml:space="preserve">
+    <value>احصل على إجابات من العلماء الإسلاميين ذوي الخبرة الواسعة.</value>
+  </data>
+  <data name="CompletePrivacy" xml:space="preserve">
+    <value>الخصوصية الكاملة</value>
+  </data>
+  <data name="SubmitAnonymously" xml:space="preserve">
+    <value>قدم أسئلتك بشكل مجهول تماماً مع السرية والخصوصية الكاملة.</value>
+  </data>
+  <data name="SearchableDatabase" xml:space="preserve">
+    <value>قاعدة بيانات قابلة للبحث</value>
+  </data>
+  <data name="AccessGrowingLibrary" xml:space="preserve">
+    <value>الوصول إلى مكتبة متزايدة من الأسئلة المجاب عليها حول مواضيع مختلفة.</value>
+  </data>
+  <data name="HowItWorks" xml:space="preserve">
+    <value>كيفية العمل</value>
+  </data>
+  <data name="AskYourQuestion" xml:space="preserve">
+    <value>اسأل سؤالك</value>
+  </data>
+  <data name="SubmitYourQuestion" xml:space="preserve">
+    <value>قدم سؤالك الإسلامي من خلال نموذجنا البسيط مع كل التفاصيل اللازمة.</value>
+  </data>
+  <data name="OurTeamReviews" xml:space="preserve">
+    <value>فريقنا يراجع</value>
+  </data>
+  <data name="ScholarlyReview" xml:space="preserve">
+    <value>يقوم علماؤنا بمراجعة سؤالك بعناية وإعداد إجابة شاملة.</value>
+  </data>
+  <data name="GetYourAnswer" xml:space="preserve">
+    <value>احصل على إجابتك</value>
+  </data>
+  <data name="AnswerPublished" xml:space="preserve">
+    <value>يتم نشر إجابتك وتوفيرها لك ولغيرك في قاعدة البيانات لدينا.</value>
+  </data>
+  <data name="ReadyToGetStarted" xml:space="preserve">
+    <value>هل أنت مستعد للبدء؟</value>
+  </data>
+  <data name="SubmitNow" xml:space="preserve">
+    <value>أرسل سؤالك الآن</value>
+  </data>
+</root>

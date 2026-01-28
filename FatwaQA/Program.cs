@@ -1,6 +1,7 @@
 using FatwaQA.Data;
 using FatwaQA.Helpers;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<FatwaContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Add localization
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+builder.Services.AddControllersWithViews()
+    .AddDataAnnotationsLocalization()
+    .AddViewLocalization();
+
 // Add session
 builder.Services.AddSession(options =>
 {
@@ -20,6 +27,15 @@ builder.Services.AddSession(options =>
 });
 
 var app = builder.Build();
+
+// Configure localization
+var supportedCultures = new[] { "en", "ar" };
+var localizationOptions = new RequestLocalizationOptions()
+    .SetDefaultCulture("en")
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
+
+app.UseRequestLocalization(localizationOptions);
 
 // Seed the database with initial admin user
 using (var scope = app.Services.CreateScope())

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <data name="SubmitAQuestion" xml:space="preserve">
+    <value>Submit a Question</value>
+  </data>
+  <data name="QuestionTitle" xml:space="preserve">
+    <value>Question Title</value>
+  </data>
+  <data name="BriefTitleOfYourQuestion" xml:space="preserve">
+    <value>Brief title of your question</value>
+  </data>
+  <data name="QuestionDetails" xml:space="preserve">
+    <value>Question Details</value>
+  </data>
+  <data name="ProvideDetails" xml:space="preserve">
+    <value>Provide detailed information about your question. Include any relevant context or background...</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="SelectCategory" xml:space="preserve">
+    <value>-- Select a Category --</value>
+  </data>
+  <data name="IslamicLaw" xml:space="preserve">
+    <value>Islamic Law</value>
+  </data>
+  <data name="DailyLife" xml:space="preserve">
+    <value>Daily Life</value>
+  </data>
+  <data name="Family" xml:space="preserve">
+    <value>Family</value>
+  </data>
+  <data name="Business" xml:space="preserve">
+    <value>Business</value>
+  </data>
+  <data name="Health" xml:space="preserve">
+    <value>Health</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="YourName" xml:space="preserve">
+    <value>Your Name</value>
+  </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="YourPrivacy" xml:space="preserve">
+    <value>Your Privacy: Your question will be reviewed by our scholars before being published. We keep your email private and only use it for updates on your question.</value>
+  </data>
+  <data name="SubmitQuestion" xml:space="preserve">
+    <value>Submit Question</value>
+  </data>
+  <data name="AnsweredQuestions" xml:space="preserve">
+    <value>Answered Questions</value>
+  </data>
+  <data name="BrowseAnsweredQuestions" xml:space="preserve">
+    <value>Browse our collection of answered Islamic questions and find guidance on various topics.</value>
+  </data>
+  <data name="NoAnsweredQuestions" xml:space="preserve">
+    <value>No Answered Questions Yet</value>
+  </data>
+  <data name="BuildingKnowledgeBase" xml:space="preserve">
+    <value>We're currently building our knowledge base. Be the first to submit a question!</value>
+  </data>
+  <data name="DidntFindYourAnswer" xml:space="preserve">
+    <value>Didn't find your answer?</value>
+  </data>
+  <data name="SubmitYourQuestion" xml:space="preserve">
+    <value>Submit your question and our team of scholars will provide expert guidance.</value>
+  </data>
+  <data name="ReadFullAnswer" xml:space="preserve">
+    <value>Read Full Answer</value>
+  </data>
+  <data name="ViewMoreQuestions" xml:space="preserve">
+    <value>View More Questions</value>
+  </data>
+  <data name="AskAnotherQuestion" xml:space="preserve">
+    <value>Ask Another Question</value>
+  </data>
+  <data name="Answered" xml:space="preserve">
+    <value>Answered</value>
+  </data>
+  <data name="Published" xml:space="preserve">
+    <value>Published</value>
+  </data>
+</root>

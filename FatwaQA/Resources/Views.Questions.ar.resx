@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <data name="SubmitAQuestion" xml:space="preserve">
+    <value>إرسال سؤال</value>
+  </data>
+  <data name="QuestionTitle" xml:space="preserve">
+    <value>عنوان السؤال</value>
+  </data>
+  <data name="BriefTitleOfYourQuestion" xml:space="preserve">
+    <value>مثلاً: هل يجوز...</value>
+  </data>
+  <data name="QuestionDetails" xml:space="preserve">
+    <value>تفاصيل السؤال</value>
+  </data>
+  <data name="ProvideDetails" xml:space="preserve">
+    <value>قدم معلومات مفصلة عن سؤالك. أضف أي سياق أو خلفية ذات صلة...</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>الفئة</value>
+  </data>
+  <data name="SelectCategory" xml:space="preserve">
+    <value>-- اختر فئة --</value>
+  </data>
+  <data name="IslamicLaw" xml:space="preserve">
+    <value>الشريعة الإسلامية</value>
+  </data>
+  <data name="DailyLife" xml:space="preserve">
+    <value>الحياة اليومية</value>
+  </data>
+  <data name="Family" xml:space="preserve">
+    <value>الأسرة</value>
+  </data>
+  <data name="Business" xml:space="preserve">
+    <value>الأعمال</value>
+  </data>
+  <data name="Health" xml:space="preserve">
+    <value>الصحة</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>أخرى</value>
+  </data>
+  <data name="YourName" xml:space="preserve">
+    <value>اسمك</value>
+  </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>عنوان بريدك الإلكتروني</value>
+  </data>
+  <data name="YourPrivacy" xml:space="preserve">
+    <value>خصوصيتك: سيتم مراجعة سؤالك من قبل علمائنا قبل نشره. نحتفظ ببريدك الإلكتروني بسرية ولا نستخدمه إلا لإرسال تحديثات حول سؤالك.</value>
+  </data>
+  <data name="SubmitQuestion" xml:space="preserve">
+    <value>إرسال السؤال</value>
+  </data>
+  <data name="AnsweredQuestions" xml:space="preserve">
+    <value>الأسئلة المجابة</value>
+  </data>
+  <data name="BrowseAnsweredQuestions" xml:space="preserve">
+    <value>استعرض مجموعتنا من الأسئلة الإسلامية المجابة والحصول على إرشادات حول مواضيع مختلفة.</value>
+  </data>
+  <data name="NoAnsweredQuestions" xml:space="preserve">
+    <value>لا توجد أسئلة مجابة حتى الآن</value>
+  </data>
+  <data name="BuildingKnowledgeBase" xml:space="preserve">
+    <value>نحن حالياً نبني قاعدة معارفنا. كن أول من يرسل سؤالاً!</value>
+  </data>
+  <data name="DidntFindYourAnswer" xml:space="preserve">
+    <value>لم تجد إجابتك؟</value>
+  </data>
+  <data name="SubmitYourQuestion" xml:space="preserve">
+    <value>أرسل سؤالك وسيقدم فريق العلماء لدينا إرشادات الخبراء.</value>
+  </data>
+  <data name="ReadFullAnswer" xml:space="preserve">
+    <value>اقرأ الإجابة الكاملة</value>
+  </data>
+  <data name="ViewMoreQuestions" xml:space="preserve">
+    <value>عرض المزيد من الأسئلة</value>
+  </data>
+  <data name="AskAnotherQuestion" xml:space="preserve">
+    <value>اسأل سؤالاً آخر</value>
+  </data>
+  <data name="Answered" xml:space="preserve">
+    <value>مجاب</value>
+  </data>
+  <data name="Published" xml:space="preserve">
+    <value>منشور</value>
+  </data>
+</root>

@@ -1,5 +1,13 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@using Microsoft.AspNetCore.Localization
+@inject IStringLocalizer<SharedResource> Localizer
+
+@{
+    var currentCulture = CultureInfo.CurrentCulture.Name;
+    var isArabic = currentCulture.StartsWith("ar");
+}
+
+<!DOCTYPE html>
+<html lang="@currentCulture" dir="@(isArabic ? "rtl" : "ltr")">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,19 +33,38 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Questions" asp-action="Submit">
-                                <i class="fas fa-pen-fancy"></i> Ask Question
+                                <i class="fas fa-pen-fancy"></i> @Localizer["AskQuestion"]
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Questions" asp-action="Answered">
-                                <i class="fas fa-list"></i> Browse Answers
+                                <i class="fas fa-list"></i> @Localizer["BrowseAnswers"]
                             </a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-globe"></i> @Localizer["Language"]
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                                <li>
+                                    <a class="dropdown-item @(currentCulture == "en" ? "active" : "")" 
+                                       href="@Url.Action("SetLanguage", "Home", new { culture = "en", returnUrl = ViewContext.HttpContext.Request.Path })">
+                                        <i class="fas fa-check me-2"></i>@Localizer["English"]
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item @(currentCulture == "ar" ? "active" : "")" 
+                                       href="@Url.Action("SetLanguage", "Home", new { culture = "ar", returnUrl = ViewContext.HttpContext.Request.Path })">
+                                        <i class="fas fa-check me-2"></i>@Localizer["Arabic"]
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="Login">
-                                <i class="fas fa-lock"></i> Admin
+                                <i class="fas fa-lock"></i> @Localizer["Admin"]
                             </a>
                         </li>
                     </ul>

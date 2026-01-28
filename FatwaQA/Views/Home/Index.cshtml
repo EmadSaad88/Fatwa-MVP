@@ -1,5 +1,10 @@
-﻿@{
-    ViewData["Title"] = "Welcome to Fatwa Q&A";
+﻿@using Microsoft.AspNetCore.Localization
+@inject IStringLocalizer<SharedResource> SharedLocalizer
+@inject IHtmlLocalizer<Views.Home.Index> Localizer
+
+@{
+    ViewData["Title"] = Localizer["WelcomeToFatwaQA"];
+    var currentCulture = CultureInfo.CurrentCulture.Name;
 }
 
 <!-- Hero Section -->
@@ -11,15 +16,14 @@
                     <i class="fas fa-book-quran"></i> Fatwa Q&A System
                 </h1>
                 <p class="lead mb-4 fs-5" style="font-weight: 300;">
-                    Ask Islamic questions and receive expert guidance from knowledgeable scholars. 
-                    Your questions matter, and we're here to help.
+                    @Localizer["AskIslamicQuestions"]
                 </p>
                 <div class="d-flex gap-3 justify-content-center flex-wrap">
                     <a href="@Url.Action("Submit", "Questions")" class="btn btn-light btn-lg">
-                        <i class="fas fa-pen-fancy me-2"></i>Ask a Question
+                        <i class="fas fa-pen-fancy me-2"></i>@SharedLocalizer["AskQuestion"]
                     </a>
                     <a href="@Url.Action("Answered", "Questions")" class="btn btn-outline-light btn-lg">
-                        <i class="fas fa-search me-2"></i>Browse Answers
+                        <i class="fas fa-search me-2"></i>@SharedLocalizer["BrowseAnswers"]
                     </a>
                 </div>
             </div>
@@ -38,8 +42,8 @@
                         <i class="fas fa-check-circle fs-2" style="color: white;"></i>
                     </div>
                 </div>
-                <h5 class="fw-bold mb-2">Easy to Use</h5>
-                <p class="text-muted">Simple and straightforward question submission process that takes less than a minute.</p>
+                <h5 class="fw-bold mb-2">@Localizer["EasyToUse"]</h5>
+                <p class="text-muted">@Localizer["SimpleAndStraightforward"]</p>
             </div>
         </div>
 
@@ -51,8 +55,8 @@
                         <i class="fas fa-star fs-2" style="color: white;"></i>
                     </div>
                 </div>
-                <h5 class="fw-bold mb-2">Expert Answers</h5>
-                <p class="text-muted">Receive answers from knowledgeable Islamic scholars with extensive experience.</p>
+                <h5 class="fw-bold mb-2">@Localizer["ExpertAnswers"]</h5>
+                <p class="text-muted">@Localizer["AnswersFromScholars"]</p>
             </div>
         </div>
 
@@ -64,8 +68,8 @@
                         <i class="fas fa-shield-alt fs-2" style="color: white;"></i>
                     </div>
                 </div>
-                <h5 class="fw-bold mb-2">Complete Privacy</h5>
-                <p class="text-muted">Submit your questions anonymously with complete privacy and confidentiality.</p>
+                <h5 class="fw-bold mb-2">@Localizer["CompletePrivacy"]</h5>
+                <p class="text-muted">@Localizer["SubmitAnonymously"]</p>
             </div>
         </div>
 
@@ -77,8 +81,8 @@
                         <i class="fas fa-search fs-2" style="color: white;"></i>
                     </div>
                 </div>
-                <h5 class="fw-bold mb-2">Searchable Database</h5>
-                <p class="text-muted">Access a growing library of previously answered questions on various topics.</p>
+                <h5 class="fw-bold mb-2">@Localizer["SearchableDatabase"]</h5>
+                <p class="text-muted">@Localizer["AccessGrowingLibrary"]</p>
             </div>
         </div>
     </div>
@@ -87,7 +91,7 @@
 <!-- How It Works Section -->
 <div class="bg-light py-5 mb-5">
     <div class="container">
-        <h2 class="text-center fw-bold mb-5" style="color: #1e40af;">How It Works</h2>
+        <h2 class="text-center fw-bold mb-5" style="color: #1e40af;">@Localizer["HowItWorks"]</h2>
         <div class="row g-4">
             <div class="col-md-4">
                 <div class="text-center">
@@ -95,8 +99,8 @@
                          style="width: 60px; height: 60px; background: #1e40af; color: white; font-size: 1.5rem; font-weight: bold;">
                         1
                     </div>
-                    <h5 class="fw-bold">Ask Your Question</h5>
-                    <p class="text-muted">Submit your Islamic question through our simple form with all the details needed.</p>
+                    <h5 class="fw-bold">@Localizer["AskYourQuestion"]</h5>
+                    <p class="text-muted">@Localizer["SubmitYourQuestion"]</p>
                 </div>
             </div>
             <div class="col-md-4">
@@ -105,8 +109,8 @@
                          style="width: 60px; height: 60px; background: #0ea5e9; color: white; font-size: 1.5rem; font-weight: bold;">
                         2
                     </div>
-                    <h5 class="fw-bold">Our Team Reviews</h5>
-                    <p class="text-muted">Our scholars carefully review your question and prepare a comprehensive answer.</p>
+                    <h5 class="fw-bold">@Localizer["OurTeamReviews"]</h5>
+                    <p class="text-muted">@Localizer["ScholarlyReview"]</p>
                 </div>
             </div>
             <div class="col-md-4">
@@ -115,8 +119,8 @@
                          style="width: 60px; height: 60px; background: #10b981; color: white; font-size: 1.5rem; font-weight: bold;">
                         3
                     </div>
-                    <h5 class="fw-bold">Get Your Answer</h5>
-                    <p class="text-muted">Your answer is published and available for you and others in our database.</p>
+                    <h5 class="fw-bold">@Localizer["GetYourAnswer"]</h5>
+                    <p class="text-muted">@Localizer["AnswerPublished"]</p>
                 </div>
             </div>
         </div>
@@ -127,10 +131,10 @@
 <div class="container mb-5">
     <div class="card border-0 shadow-medium p-5" style="background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%);">
         <div class="text-center">
-            <h3 class="fw-bold mb-3">Ready to Get Started?</h3>
-            <p class="text-muted mb-4">Have an Islamic question? Submit it now and our team will provide guidance.</p>
+            <h3 class="fw-bold mb-3">@Localizer["ReadyToGetStarted"]</h3>
+            <p class="text-muted mb-4">@Localizer["SubmitNow"]</p>
             <a href="@Url.Action("Submit", "Questions")" class="btn btn-primary btn-lg">
-                <i class="fas fa-arrow-right me-2"></i>Submit Your Question Now
+                <i class="fas fa-arrow-right me-2"></i>@Localizer["SubmitNow"]
             </a>
         </div>
     </div>
