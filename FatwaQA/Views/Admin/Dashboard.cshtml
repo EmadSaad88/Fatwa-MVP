@@ -1,0 +1,81 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    var stats = (dynamic)ViewData.Model;
+}
+
+<div class="container-fluid mt-4">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1>Admin Dashboard</h1>
+        </div>
+        <div class="col-md-4 text-end">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <i class="bi bi-person-circle"></i> Admin Menu
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" asp-action="ChangePassword">Change Password</a></li>
+                    <li><a class="dropdown-item" asp-action="ManageUsers">Manage Users</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item text-danger" asp-action="Logout">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Total Questions</h5>
+                    <h2 class="text-primary">@stats.TotalQuestions</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Pending</h5>
+                    <h2 class="text-warning">@stats.PendingQuestions</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Answered</h5>
+                    <h2 class="text-success">@stats.AnsweredQuestions</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Published</h5>
+                    <h2 class="text-info">@stats.PublishedQuestions</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <a asp-action="ManageQuestions" asp-route-status="Pending" class="btn btn-warning me-2">
+                        <i class="bi bi-clock"></i> Review Pending Questions
+                    </a>
+                    <a asp-action="ManageQuestions" asp-route-status="Answered" class="btn btn-success me-2">
+                        <i class="bi bi-check-circle"></i> Published Answers
+                    </a>
+                    <a asp-action="ManageUsers" class="btn btn-info">
+                        <i class="bi bi-people"></i> Manage Users
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

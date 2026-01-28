@@ -1,0 +1,76 @@
+@model FatwaQA.Models.Question
+
+@{
+    ViewData["Title"] = "Submit a Question";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Submit Your Question</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Submit" method="post">
+                        <div class="mb-3">
+                            <label asp-for="Title" class="form-label">Question Title <span class="text-danger">*</span></label>
+                            <input asp-for="Title" class="form-control" placeholder="Brief title of your question" required />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Content" class="form-label">Question Details <span class="text-danger">*</span></label>
+                            <textarea asp-for="Content" class="form-control" rows="6" placeholder="Provide detailed information about your question..." required></textarea>
+                            <span asp-validation-for="Content" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Category" class="form-label">Category <span class="text-danger">*</span></label>
+                            <select asp-for="Category" class="form-control" required>
+                                <option value="">-- Select Category --</option>
+                                <option value="Islamic Law">Islamic Law</option>
+                                <option value="Daily Life">Daily Life</option>
+                                <option value="Family">Family</option>
+                                <option value="Business">Business</option>
+                                <option value="Health">Health</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <span asp-validation-for="Category" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="SubmitterName" class="form-label">Your Name <span class="text-danger">*</span></label>
+                                    <input asp-for="SubmitterName" class="form-control" placeholder="Your full name" required />
+                                    <span asp-validation-for="SubmitterName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="SubmitterEmail" class="form-label">Email Address <span class="text-danger">*</span></label>
+                                    <input asp-for="SubmitterEmail" class="form-control" type="email" placeholder="your@email.com" required />
+                                    <span asp-validation-for="SubmitterEmail" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info" role="alert">
+                            <strong>Note:</strong> Your question will be reviewed by our scholars before being published.
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">Submit Question</button>
+                            <a href="@Url.Action("Answered")" class="btn btn-outline-secondary">View Answered Questions</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

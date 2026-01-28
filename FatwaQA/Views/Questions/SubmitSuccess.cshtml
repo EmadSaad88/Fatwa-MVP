@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Question Submitted Successfully";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card border-success">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="bi bi-check-circle-fill text-success" style="font-size: 3rem;"></i>
+                    </div>
+                    <h2 class="card-title mb-3">Thank You!</h2>
+                    <p class="card-text fs-5 mb-4">
+                        Your question has been successfully submitted. Our scholars will review it and provide an answer soon.
+                    </p>
+                    <p class="text-muted mb-4">
+                        You will receive an email notification once your question has been answered.
+                    </p>
+                    <a href="@Url.Action("Answered")" class="btn btn-primary btn-lg">View Answered Questions</a>
+                    <a href="@Url.Action("Submit")" class="btn btn-outline-secondary btn-lg">Submit Another Question</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

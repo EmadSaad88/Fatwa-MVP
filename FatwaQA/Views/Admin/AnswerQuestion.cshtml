@@ -1,0 +1,147 @@
+@model FatwaQA.Models.Question
+
+@{
+    ViewData["Title"] = "Answer Question";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1>Review & Answer Question</h1>
+        </div>
+        <div class="col-md-4 text-end">
+            <a asp-action="ManageQuestions" asp-route-status="@Model.Status" class="btn btn-secondary">← Back</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header bg-light">
+                    <h4 class="mb-0">Question Details</h4>
+                </div>
+                <div class="card-body">
+                    <h5>@Model.Title</h5>
+                    <p class="text-muted">
+                        <strong>Category:</strong> @Model.Category |
+                        <strong>Submitted by:</strong> @Model.SubmitterName (@Model.SubmitterEmail) |
+                        <strong>Date:</strong> @Model.SubmittedDate.ToString("MMMM dd, yyyy")
+                    </p>
+                    <hr />
+                    <div class="question-text">
+                        <p>@Html.Raw(Model.Content.Replace(Environment.NewLine, "<br />"))</p>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.Status != "Pending")
+            {
+                <div class="alert alert-info">
+                    <strong>Status:</strong> @Model.Status
+                    @if (Model.AnsweredBy != null && Model.UpdatedDate.HasValue)
+                    {
+                        <br />
+                        <text>Answered by: </text>@Model.AnsweredBy.FullName<text> on </text>@Model.UpdatedDate.Value.ToString("MMMM dd, yyyy")
+                    }
+                </div>
+            }
+
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Your Answer</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-action="AnswerQuestion">
+                        <input type="hidden" name="id" value="@Model.Id" />
+                        
+                        <div class="mb-3">
+                            <label for="answer" class="form-label">Answer <span class="text-danger">*</span></label>
+                            <textarea id="answer" name="answer" class="form-control" rows="8" required>@Model.Answer</textarea>
+                            <small class="text-muted">Provide a detailed and helpful answer based on Islamic knowledge.</small>
+                        </div>
+
+                        <div class="alert alert-warning" role="alert">
+                            <strong>⚠️ Important:</strong> You must check "Publish" below to make this answer visible to the public!
+                        </div>
+
+                        <div class="form-check mb-3 p-3 bg-light border rounded">
+                            <input type="checkbox" id="publish" name="publish" value="true" class="form-check-input" 
+                                @if (Model.IsPublished) { <text>checked</text> } />
+                            <label class="form-check-label" for="publish">
+                                <strong>✓ Publish this answer to public view</strong>
+                            </label>
+                            <br />
+                            <small class="text-muted">Without this checkbox, only you will see the answer in the admin panel.</small>
+                        </div>
+
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn btn-success">Save Answer</button>
+                            <a asp-action="ManageQuestions" asp-route-status="@Model.Status" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Question Status</h5>
+                </div>
+                <div class="card-body">
+                    <div class="status-info mb-3">
+                        <p><strong>Current Status:</strong></p>
+                        <p>
+                            <span class="badge bg-@(Model.Status == "Pending" ? "warning" : Model.Status == "Answered" ? "success" : "danger")">
+                                @Model.Status
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="published-info mb-3">
+                        <p><strong>Published:</strong></p>
+                        <p>
+                            @if (Model.IsPublished)
+                            {
+                                <span class="badge bg-info">Published</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Not Published</span>
+                            }
+                        </p>
+                    </div>
+
+                    @if (Model.Status == "Pending")
+                    {
+                        <form method="post" asp-action="RejectQuestion" style="display:inline;">
+                            <input type="hidden" name="id" value="@Model.Id" />
+                            <button type="submit" class="btn btn-danger w-100" onclick="return confirm('Reject this question?');">
+                                Reject Question
+                            </button>
+                        </form>
+                    }
+                </div>
+            </div>
+
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h5 class="mb-0">Submitter Info</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Name:</strong> @Model.SubmitterName</p>
+                    <p><strong>Email:</strong> <a href="mailto:@Model.SubmitterEmail">@Model.SubmitterEmail</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .question-text {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-left: 4px solid #0d6efd;
+        border-radius: 4px;
+    }
+</style>

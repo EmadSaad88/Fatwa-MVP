@@ -1,0 +1,111 @@
+@model IEnumerable<FatwaQA.Models.Question>
+
+@{
+    ViewData["Title"] = "Manage Questions";
+    var statusFilter = ViewContext.RouteData.Values["status"]?.ToString() ?? "Pending";
+}
+
+<div class="container-fluid mt-4">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1>Manage Questions</h1>
+        </div>
+        <div class="col-md-4 text-end">
+            <a asp-action="Dashboard" class="btn btn-secondary">← Back to Dashboard</a>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <div class="btn-group" role="group">
+                <a asp-action="ManageQuestions" asp-route-status="Pending" 
+                   class="btn @(statusFilter == "Pending" ? "btn-warning" : "btn-outline-warning")">
+                    Pending @Model.Count(q => q.Status == "Pending")
+                </a>
+                <a asp-action="ManageQuestions" asp-route-status="Answered" 
+                   class="btn @(statusFilter == "Answered" ? "btn-success" : "btn-outline-success")">
+                    Answered @Model.Count(q => q.Status == "Answered")
+                </a>
+                <a asp-action="ManageQuestions" asp-route-status="Rejected" 
+                   class="btn @(statusFilter == "Rejected" ? "btn-danger" : "btn-outline-danger")">
+                    Rejected @Model.Count(q => q.Status == "Rejected")
+                </a>
+            </div>
+        </div>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Submitter</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var question in Model)
+                    {
+                        <tr>
+                            <td>@question.Id</td>
+                            <td>
+                                <strong>@question.Title</strong>
+                                @if (question.Status == "Answered" && question.IsPublished)
+                                {
+                                    <span class="badge bg-info ms-2">🌐 Published</span>
+                                }
+                                else if (question.Status == "Answered" && !question.IsPublished)
+                                {
+                                    <span class="badge bg-secondary ms-2">🔒 Not Published</span>
+                                }
+                            </td>
+                            <td>@question.SubmitterName</td>
+                            <td>
+                                <span class="badge bg-secondary">@question.Category</span>
+                            </td>
+                            <td>
+                                @switch (question.Status)
+                                {
+                                    case "Pending":
+                                        <span class="badge bg-warning">Pending</span>
+                                        break;
+                                    case "Answered":
+                                        <span class="badge bg-success">Answered</span>
+                                        break;
+                                    case "Rejected":
+                                        <span class="badge bg-danger">Rejected</span>
+                                        break;
+                                }
+                            </td>
+                            <td>@question.SubmittedDate.ToString("MMM dd, yyyy")</td>
+                            <td>
+                                <a asp-action="AnswerQuestion" asp-route-id="@question.Id" class="btn btn-sm btn-primary">
+                                    View/Answer
+                                </a>
+                                @if (question.Status == "Pending")
+                                {
+                                    <form method="post" asp-action="RejectQuestion" style="display:inline;">
+                                        <input type="hidden" name="id" value="@question.Id" />
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">Reject</button>
+                                    </form>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            No questions in this category.
+        </div>
+    }
+</div>

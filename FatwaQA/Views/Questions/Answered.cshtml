@@ -1,0 +1,53 @@
+@model IEnumerable<FatwaQA.Models.Question>
+
+@{
+    ViewData["Title"] = "Answered Questions";
+}
+
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1>Answered Questions</h1>
+        </div>
+        <div class="col-md-4 text-end">
+            <a asp-action="Submit" class="btn btn-primary">Ask a Question</a>
+        </div>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="row">
+            @foreach (var question in Model)
+            {
+                <div class="col-md-12 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div class="flex-grow-1">
+                                    <h5 class="card-title">@question.Title</h5>
+                                    <p class="card-text text-muted mb-2">
+                                        <strong>Category:</strong> @question.Category
+                                        | <strong>Answered:</strong> @question.UpdatedDate?.ToString("MMM dd, yyyy")
+                                    </p>
+                                    <p class="card-text">@question.Content.Substring(0, Math.Min(150, question.Content.Length))...</p>
+                                </div>
+                                <span class="badge bg-success">Answered</span>
+                            </div>
+                            <div class="mt-3">
+                                <a asp-action="ViewAnswer" asp-route-id="@question.Id" class="btn btn-sm btn-primary">
+                                    View Answer
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info" role="alert">
+            <p class="mb-0">No answered questions available yet. <a asp-action="Submit" class="alert-link">Submit your question now!</a></p>
+        </div>
+    }
+</div>
