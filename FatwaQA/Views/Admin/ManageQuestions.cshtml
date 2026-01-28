@@ -5,30 +5,43 @@
     var statusFilter = ViewContext.RouteData.Values["status"]?.ToString() ?? "Pending";
 }
 
-<div class="container-fluid mt-4">
-    <div class="row mb-4">
+<div class="container-fluid py-5">
+    <!-- Header -->
+    <div class="row mb-5">
         <div class="col-md-8">
-            <h1>Manage Questions</h1>
+            <h1 class="fw-bold" style="color: #1e40af;">
+                <i class="fas fa-tasks me-2"></i>Manage Questions
+            </h1>
+            <p class="text-muted">Review and respond to submitted questions</p>
         </div>
         <div class="col-md-4 text-end">
-            <a asp-action="Dashboard" class="btn btn-secondary">← Back to Dashboard</a>
+            <a asp-action="Dashboard" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+            </a>
         </div>
     </div>
 
-    <div class="row mb-3">
-        <div class="col-md-12">
-            <div class="btn-group" role="group">
+    <!-- Filter Buttons -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="btn-group w-100" role="group">
                 <a asp-action="ManageQuestions" asp-route-status="Pending" 
-                   class="btn @(statusFilter == "Pending" ? "btn-warning" : "btn-outline-warning")">
-                    Pending @Model.Count(q => q.Status == "Pending")
+                   class="btn btn-lg @(statusFilter == "Pending" ? "btn-warning" : "btn-outline-warning") flex-grow-1"
+                   style="@(statusFilter == "Pending" ? "background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border: none;" : "")">
+                    <i class="fas fa-hourglass-half me-2"></i>Pending 
+                    <span class="badge bg-light text-dark ms-2">@Model.Count(q => q.Status == "Pending")</span>
                 </a>
                 <a asp-action="ManageQuestions" asp-route-status="Answered" 
-                   class="btn @(statusFilter == "Answered" ? "btn-success" : "btn-outline-success")">
-                    Answered @Model.Count(q => q.Status == "Answered")
+                   class="btn btn-lg @(statusFilter == "Answered" ? "btn-success" : "btn-outline-success") flex-grow-1"
+                   style="@(statusFilter == "Answered" ? "background: linear-gradient(135deg, #10b981 0%, #059669 100%); border: none;" : "")">
+                    <i class="fas fa-check-circle me-2"></i>Answered 
+                    <span class="badge bg-light text-dark ms-2">@Model.Count(q => q.Status == "Answered")</span>
                 </a>
                 <a asp-action="ManageQuestions" asp-route-status="Rejected" 
-                   class="btn @(statusFilter == "Rejected" ? "btn-danger" : "btn-outline-danger")">
-                    Rejected @Model.Count(q => q.Status == "Rejected")
+                   class="btn btn-lg @(statusFilter == "Rejected" ? "btn-danger" : "btn-outline-danger") flex-grow-1"
+                   style="@(statusFilter == "Rejected" ? "background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); border: none;" : "")">
+                    <i class="fas fa-times-circle me-2"></i>Rejected 
+                    <span class="badge bg-light text-dark ms-2">@Model.Count(q => q.Status == "Rejected")</span>
                 </a>
             </div>
         </div>
@@ -36,76 +49,116 @@
 
     @if (Model.Any())
     {
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead class="table-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Submitter</th>
-                        <th>Category</th>
-                        <th>Status</th>
-                        <th>Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var question in Model)
-                    {
-                        <tr>
-                            <td>@question.Id</td>
-                            <td>
-                                <strong>@question.Title</strong>
-                                @if (question.Status == "Answered" && question.IsPublished)
-                                {
-                                    <span class="badge bg-info ms-2">🌐 Published</span>
-                                }
-                                else if (question.Status == "Answered" && !question.IsPublished)
-                                {
-                                    <span class="badge bg-secondary ms-2">🔒 Not Published</span>
-                                }
-                            </td>
-                            <td>@question.SubmitterName</td>
-                            <td>
-                                <span class="badge bg-secondary">@question.Category</span>
-                            </td>
-                            <td>
-                                @switch (question.Status)
-                                {
-                                    case "Pending":
-                                        <span class="badge bg-warning">Pending</span>
-                                        break;
-                                    case "Answered":
-                                        <span class="badge bg-success">Answered</span>
-                                        break;
-                                    case "Rejected":
-                                        <span class="badge bg-danger">Rejected</span>
-                                        break;
-                                }
-                            </td>
-                            <td>@question.SubmittedDate.ToString("MMM dd, yyyy")</td>
-                            <td>
-                                <a asp-action="AnswerQuestion" asp-route-id="@question.Id" class="btn btn-sm btn-primary">
-                                    View/Answer
-                                </a>
-                                @if (question.Status == "Pending")
-                                {
-                                    <form method="post" asp-action="RejectQuestion" style="display:inline;">
-                                        <input type="hidden" name="id" value="@question.Id" />
-                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">Reject</button>
-                                    </form>
-                                }
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr style="background: #1e40af; color: white; text-transform: uppercase; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px;">
+                                <th style="color: white;">ID</th>
+                                <th style="color: white;">Title</th>
+                                <th style="color: white;">Submitter</th>
+                                <th style="color: white;">Category</th>
+                                <th style="color: white;">Status</th>
+                                <th style="color: white;">Date</th>
+                                <th style="color: white;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var question in Model)
+                            {
+                                <tr class="border-bottom align-middle" style="background: white;">
+                                    <td>
+                                        <span class="badge bg-light text-dark fw-bold">@question.Id</span>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <strong style="color: #1e40af;">@question.Title</strong>
+                                            @if (question.Status == "Answered" && question.IsPublished)
+                                            {
+                                                <span class="badge bg-info ms-2" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%) !important;">
+                                                    <i class="fas fa-globe me-1"></i>Published
+                                                </span>
+                                            }
+                                            else if (question.Status == "Answered" && !question.IsPublished)
+                                            {
+                                                <span class="badge bg-secondary ms-2" style="background: linear-gradient(135deg, #64748b 0%, #475569 100%) !important;">
+                                                    <i class="fas fa-lock me-1"></i>Not Published
+                                                </span>
+                                            }
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <small class="text-muted">@question.SubmitterName</small>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-light text-dark">
+                                            <i class="fas fa-tag me-1"></i>@question.Category
+                                        </span>
+                                    </td>
+                                    <td>
+                                        @switch (question.Status)
+                                        {
+                                            case "Pending":
+                                                <span class="badge" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white;">
+                                                    <i class="fas fa-spinner me-1"></i>Pending
+                                                </span>
+                                                break;
+                                            case "Answered":
+                                                <span class="badge" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white;">
+                                                    <i class="fas fa-check me-1"></i>Answered
+                                                </span>
+                                                break;
+                                            case "Rejected":
+                                                <span class="badge" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white;">
+                                                    <i class="fas fa-ban me-1"></i>Rejected
+                                                </span>
+                                                break;
+                                        }
+                                    </td>
+                                    <td>
+                                        <small class="text-muted">
+                                            <i class="fas fa-calendar me-1"></i>@question.SubmittedDate.ToString("MMM dd, yyyy")
+                                        </small>
+                                    </td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group">
+                                            <a asp-action="AnswerQuestion" asp-route-id="@question.Id" class="btn btn-primary">
+                                                <i class="fas fa-edit me-1"></i>Edit
+                                            </a>
+                                            @if (question.Status == "Pending")
+                                            {
+                                                <form method="post" asp-action="RejectQuestion" style="display:inline;">
+                                                    <input type="hidden" name="id" value="@question.Id" />
+                                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to reject this question?');">
+                                                        <i class="fas fa-trash me-1"></i>Reject
+                                                    </button>
+                                                </form>
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     }
     else
     {
-        <div class="alert alert-info">
-            No questions in this category.
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center">
+                <div class="card border-0 shadow-soft p-5" style="background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%);">
+                    <div class="mb-4">
+                        <i class="fas fa-check-circle fs-1" style="color: #10b981; opacity: 0.5;"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">No Questions Here</h4>
+                    <p class="text-muted mb-0">
+                        All questions in this category have been addressed. Great work!
+                    </p>
+                </div>
+            </div>
         </div>
     }
 </div>
